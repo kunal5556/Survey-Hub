@@ -1,0 +1,100 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f6f9;
+  color: #2b2f36;
+}
+
+.page-content {
+  flex: 1;
+  padding-bottom: 40px;
+}
+
+.page-section {
+  padding-top: 40px;
+}
+
+.section-title {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.hero {
+  background-color: #212529;
+  color: #ffffff;
+  padding: 80px 0;
+  margin-bottom: 50px;
+}
+
+.hero-title {
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  color: #d6d9dd;
+}
+
+.hero .btn {
+  margin: 0 6px;
+}
+
+.features {
+  padding-bottom: 40px;
+}
+
+.feature-card,
+.contact-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e5ea;
+  border-radius: 8px;
+  padding: 25px;
+  height: 100%;
+  text-align: center;
+}
+
+.feature-icon,
+.contact-icon {
+  font-size: 2rem;
+  color: #0d6efd;
+  margin-bottom: 15px;
+}
+
+.feature-card p,
+.contact-card p {
+  margin-bottom: 0;
+  color: #5a616b;
+}
+
+.about-list li {
+  margin-bottom: 8px;
+}
+
+.auth-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e5ea;
+  border-radius: 8px;
+  padding: 30px;
+  margin-top: 50px;
+}
+
+.auth-title {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+.auth-footer-text {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.site-footer {
+  background-color: #212529;
+  color: #ced4da;
+  padding: 20px 0;
+}

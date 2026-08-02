@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="auth-card">
+        <h2 class="auth-title"><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
+
+        <form action="/auth/login" method="POST">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Login</button>
+        </form>
+
+        <p class="auth-footer-text">New here? <a href="/auth/register">Create an account</a></p>
+      </div>
+    </div>
+  </div>
+</div>
