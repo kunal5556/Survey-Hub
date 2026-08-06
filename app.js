@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const connectDatabase = require('./config/database');
+const attachCurrentUser = require('./middleware/currentUser');
 const homeRoutes = require('./routes/homeRoutes');
 const authRoutes = require('./routes/authRoutes');
 
@@ -36,6 +37,8 @@ app.use((req, res, next) => {
   res.locals.error = req.flash('error');
   next();
 });
+
+app.use(attachCurrentUser);
 
 app.use('/', homeRoutes);
 app.use('/auth', authRoutes);
