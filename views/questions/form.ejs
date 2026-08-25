@@ -1,0 +1,45 @@
+<form action="<%= action %>" method="POST">
+  <div class="mb-3">
+    <label for="text" class="form-label">Question</label>
+    <input type="text" class="form-control" id="text" name="text" value="<%= question.text %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="type" class="form-label">Answer type</label>
+    <select class="form-select" id="type" name="type" required>
+      <% questionTypes.forEach(function (type) { %>
+        <option value="<%= type %>"
+                data-needs-options="<%= choiceQuestionTypes.includes(type) %>"
+                <%= question.type === type ? 'selected' : '' %>>
+          <%= questionTypeLabels[type] %>
+        </option>
+      <% }); %>
+    </select>
+  </div>
+
+  <div class="mb-3" id="optionsSection">
+    <label class="form-label">Options</label>
+    <div id="optionList">
+      <% question.options.forEach(function (option) { %>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control" name="options" value="<%= option %>" placeholder="Option text">
+          <button type="button" class="btn btn-outline-danger remove-option"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      <% }); %>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-secondary" id="addOption">
+      <i class="fa-solid fa-plus"></i> Add option
+    </button>
+    <div class="form-text">Choice questions need at least two options.</div>
+  </div>
+
+  <div class="form-check mb-3">
+    <input class="form-check-input" type="checkbox" id="required" name="required" <%= question.required ? 'checked' : '' %>>
+    <label class="form-check-label" for="required">Answer is required</label>
+  </div>
+
+  <button type="submit" class="btn btn-primary"><%= submitLabel %></button>
+  <a href="/surveys/<%= survey._id %>" class="btn btn-outline-secondary">Cancel</a>
+</form>
+
+<script src="/js/questionForm.js"></script>

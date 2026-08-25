@@ -6,10 +6,12 @@ const expressLayouts = require('express-ejs-layouts');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
 const connectDatabase = require('./config/database');
 const attachCurrentUser = require('./middleware/currentUser');
 const homeRoutes = require('./routes/homeRoutes');
 const authRoutes = require('./routes/authRoutes');
+const surveyRoutes = require('./routes/surveyRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -20,6 +22,7 @@ app.set('layout', 'layouts/main');
 app.use(expressLayouts);
 
 app.use(express.urlencoded({ extended: true }));
+app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -42,6 +45,7 @@ app.use(attachCurrentUser);
 
 app.use('/', homeRoutes);
 app.use('/auth', authRoutes);
+app.use('/surveys', surveyRoutes);
 
 const startServer = async () => {
   try {

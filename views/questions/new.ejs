@@ -1,0 +1,15 @@
+<div class="container page-section">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="form-card">
+        <h1 class="section-title"><i class="fa-solid fa-plus"></i> Add Question</h1>
+        <p class="text-muted">Survey: <%= survey.title %></p>
+        <%- include('form', {
+          action: `/surveys/${survey._id}/questions`,
+          question: { text: '', type: '', options: [], required: false },
+          submitLabel: 'Add Question'
+        }) %>
+      </div>
+    </div>
+  </div>
+</div>

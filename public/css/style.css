@@ -93,6 +93,45 @@ body {
   margin-bottom: 0;
 }
 
+.form-card,
+.question-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e5ea;
+  border-radius: 8px;
+  padding: 25px;
+}
+
+.question-card {
+  padding: 18px 20px;
+  margin-bottom: 15px;
+}
+
+.option-list {
+  margin: 12px 0 0 0;
+  padding-left: 20px;
+  color: #5a616b;
+}
+
+.empty-state {
+  background-color: #ffffff;
+  border: 1px dashed #c9ced6;
+  border-radius: 8px;
+  padding: 40px;
+  text-align: center;
+  color: #5a616b;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  color: #adb5bd;
+  margin-bottom: 15px;
+}
+
+.back-link {
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
 .disabled-user-name {
   color: #adb5bd;
 }

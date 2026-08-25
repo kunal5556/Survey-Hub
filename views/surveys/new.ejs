@@ -1,0 +1,15 @@
+<div class="container page-section">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="form-card">
+        <h1 class="section-title"><i class="fa-solid fa-plus"></i> New Survey</h1>
+        <%- include('form', {
+          action: '/surveys',
+          survey: { title: '', description: '' },
+          submitLabel: 'Create Survey',
+          cancelUrl: '/surveys'
+        }) %>
+      </div>
+    </div>
+  </div>
+</div>

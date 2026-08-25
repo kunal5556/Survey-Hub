@@ -1,0 +1,82 @@
+<div class="container page-section">
+  <a href="/surveys" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to my surveys</a>
+
+  <div class="d-flex justify-content-between align-items-start mt-3 mb-4">
+    <div>
+      <h1 class="section-title mb-1"><%= survey.title %></h1>
+      <% if (survey.description) { %>
+        <p class="text-muted mb-0"><%= survey.description %></p>
+      <% } %>
+    </div>
+    <div class="text-nowrap">
+      <a href="/surveys/<%= survey._id %>/edit" class="btn btn-outline-primary">
+        <i class="fa-solid fa-pen"></i> Edit
+      </a>
+      <form action="/surveys/<%= survey._id %>?_method=DELETE" method="POST" class="d-inline"
+            onsubmit="return confirm('Delete this survey and all of its questions?');">
+        <button type="submit" class="btn btn-outline-danger">
+          <i class="fa-solid fa-trash"></i> Delete
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0">Questions (<%= survey.questions.length %>)</h4>
+    <a href="/surveys/<%= survey._id %>/questions/new" class="btn btn-primary">
+      <i class="fa-solid fa-plus"></i> Add Question
+    </a>
+  </div>
+
+  <% if (survey.questions.length === 0) { %>
+    <div class="empty-state">
+      <i class="fa-solid fa-circle-question empty-icon"></i>
+      <p>This survey has no questions yet.</p>
+    </div>
+  <% } else { %>
+    <% survey.questions.forEach(function (question, index) { %>
+      <div class="question-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <h6 class="mb-2"><%= index + 1 %>. <%= question.text %></h6>
+            <span class="badge bg-light text-dark border"><%= questionTypeLabels[question.type] %></span>
+            <% if (question.required) { %>
+              <span class="badge bg-warning text-dark">Required</span>
+            <% } %>
+          </div>
+          <div class="text-nowrap">
+            <form action="/surveys/<%= survey._id %>/questions/<%= question._id %>/move?_method=PUT" method="POST" class="d-inline">
+              <input type="hidden" name="direction" value="up">
+              <button type="submit" class="btn btn-sm btn-outline-secondary" title="Move up" <%= index === 0 ? 'disabled' : '' %>>
+                <i class="fa-solid fa-arrow-up"></i>
+              </button>
+            </form>
+            <form action="/surveys/<%= survey._id %>/questions/<%= question._id %>/move?_method=PUT" method="POST" class="d-inline">
+              <input type="hidden" name="direction" value="down">
+              <button type="submit" class="btn btn-sm btn-outline-secondary" title="Move down" <%= index === survey.questions.length - 1 ? 'disabled' : '' %>>
+                <i class="fa-solid fa-arrow-down"></i>
+              </button>
+            </form>
+            <a href="/surveys/<%= survey._id %>/questions/<%= question._id %>/edit" class="btn btn-sm btn-outline-primary" title="Edit">
+              <i class="fa-solid fa-pen"></i>
+            </a>
+            <form action="/surveys/<%= survey._id %>/questions/<%= question._id %>?_method=DELETE" method="POST" class="d-inline"
+                  onsubmit="return confirm('Remove this question?');">
+              <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <% if (question.options.length > 0) { %>
+          <ul class="option-list">
+            <% question.options.forEach(function (option) { %>
+              <li><%= option %></li>
+            <% }); %>
+          </ul>
+        <% } %>
+      </div>
+    <% }); %>
+  <% } %>
+</div>
