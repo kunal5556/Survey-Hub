@@ -9,9 +9,11 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const connectDatabase = require('./config/database');
 const attachCurrentUser = require('./middleware/currentUser');
+const { notFound, errorHandler } = require('./middleware/errorHandler');
 const homeRoutes = require('./routes/homeRoutes');
 const authRoutes = require('./routes/authRoutes');
 const surveyRoutes = require('./routes/surveyRoutes');
+const responseRoutes = require('./routes/responseRoutes');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -38,6 +40,7 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
+  res.locals.formInput = req.flash('formInput')[0] || {};
   next();
 });
 
@@ -46,6 +49,10 @@ app.use(attachCurrentUser);
 app.use('/', homeRoutes);
 app.use('/auth', authRoutes);
 app.use('/surveys', surveyRoutes);
+app.use('/s', responseRoutes);
+
+app.use(notFound);
+app.use(errorHandler);
 
 const startServer = async () => {
   try {

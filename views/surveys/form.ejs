@@ -1,11 +1,12 @@
+<% const values = Object.keys(formInput).length > 0 ? formInput : survey; %>
 <form action="<%= action %>" method="POST">
   <div class="mb-3">
     <label for="title" class="form-label">Title</label>
-    <input type="text" class="form-control" id="title" name="title" value="<%= survey.title %>" required>
+    <input type="text" class="form-control" id="title" name="title" value="<%= values.title %>" required>
   </div>
   <div class="mb-3">
     <label for="description" class="form-label">Description</label>
-    <textarea class="form-control" id="description" name="description" rows="4"><%= survey.description %></textarea>
+    <textarea class="form-control" id="description" name="description" rows="4"><%= values.description %></textarea>
   </div>
   <button type="submit" class="btn btn-primary"><%= submitLabel %></button>
   <a href="<%= cancelUrl %>" class="btn btn-outline-secondary">Cancel</a>

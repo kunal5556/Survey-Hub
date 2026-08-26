@@ -1,4 +1,3 @@
-const { questionSchema } = require('../validators/surveyValidator');
 const { questionTypes, choiceQuestionTypes, questionTypeLabels } = require('../utils/questionTypes');
 
 const buildQuestionInput = (body) => {
@@ -24,6 +23,15 @@ const questionFormData = (req, extra) => Object.assign({
   questionTypeLabels
 }, extra);
 
+const requireDraftSurvey = (req, res, next) => {
+  if (req.survey.status !== 'draft') {
+    req.flash('error', 'Questions can only be changed while the survey is still a draft');
+    return res.redirect(`/surveys/${req.survey._id}`);
+  }
+
+  next();
+};
+
 const loadQuestion = (req, res, next) => {
   const question = req.survey.questions.id(req.params.questionId);
 
@@ -41,13 +49,7 @@ const showAddForm = (req, res) => {
 };
 
 const addQuestion = async (req, res) => {
-  const { error, value } = questionSchema.validate(buildQuestionInput(req.body));
-  if (error) {
-    req.flash('error', error.details[0].message);
-    return res.redirect(`/surveys/${req.survey._id}/questions/new`);
-  }
-
-  req.survey.questions.push(value);
+  req.survey.questions.push(req.validated);
   await req.survey.save();
 
   req.flash('success', 'Question added');
@@ -59,13 +61,7 @@ const showEditForm = (req, res) => {
 };
 
 const updateQuestion = async (req, res) => {
-  const { error, value } = questionSchema.validate(buildQuestionInput(req.body));
-  if (error) {
-    req.flash('error', error.details[0].message);
-    return res.redirect(`/surveys/${req.survey._id}/questions/${req.question._id}/edit`);
-  }
-
-  req.question.set(value);
+  req.question.set(req.validated);
   await req.survey.save();
 
   req.flash('success', 'Question updated');
@@ -95,6 +91,8 @@ const deleteQuestion = async (req, res) => {
 };
 
 module.exports = {
+  buildQuestionInput,
+  requireDraftSurvey,
   loadQuestion,
   showAddForm,
   addQuestion,

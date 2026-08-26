@@ -9,4 +9,6 @@ const questionTypes = Object.keys(questionTypeLabels);
 
 const choiceQuestionTypes = ['single-choice', 'multiple-choice'];
 
-module.exports = { questionTypes, choiceQuestionTypes, questionTypeLabels };
+const ratingScale = [1, 2, 3, 4, 5];
+
+module.exports = { questionTypes, choiceQuestionTypes, questionTypeLabels, ratingScale };

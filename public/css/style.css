@@ -127,6 +127,63 @@ body {
   margin-bottom: 15px;
 }
 
+.result-row {
+  margin-bottom: 12px;
+}
+
+.result-row .progress {
+  height: 8px;
+}
+
+.chart-holder {
+  height: 220px;
+}
+
+.text-answer-list {
+  margin: 15px 0 0 0;
+  padding-left: 20px;
+  max-height: 260px;
+  overflow-y: auto;
+  color: #5a616b;
+}
+
+.text-answer-list li {
+  margin-bottom: 6px;
+}
+
+.error-icon {
+  font-size: 3rem;
+  color: #adb5bd;
+  margin-bottom: 15px;
+}
+
+.share-box {
+  background-color: #ffffff;
+  border: 1px solid #e2e5ea;
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.respond-question {
+  padding: 18px 0;
+  border-bottom: 1px solid #eceef2;
+}
+
+.respond-question-text {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.rating-group {
+  padding-top: 4px;
+}
+
+.thankyou-icon {
+  font-size: 3rem;
+  color: #198754;
+  margin-bottom: 15px;
+}
+
 .back-link {
   text-decoration: none;
   font-size: 0.9rem;
