@@ -51,4 +51,8 @@ const surveySchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
+surveySchema.pre('deleteOne', { document: true, query: false }, async function () {
+  await mongoose.model('Response').deleteMany({ survey: this._id });
+});
+
 module.exports = mongoose.model('Survey', surveySchema);

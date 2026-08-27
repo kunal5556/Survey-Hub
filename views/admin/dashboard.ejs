@@ -1,0 +1,34 @@
+<div class="container page-section">
+  <h1 class="section-title mb-4"><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</h1>
+
+  <div class="row g-4 mb-4">
+    <div class="col-md-4">
+      <div class="stat-card">
+        <i class="fa-solid fa-users stat-icon"></i>
+        <h2 class="mb-0"><%= totalUsers %></h2>
+        <p class="mb-0">Registered users</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <i class="fa-solid fa-clipboard-list stat-icon"></i>
+        <h2 class="mb-0"><%= totalSurveys %></h2>
+        <p class="mb-0">Surveys created</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stat-card">
+        <i class="fa-solid fa-inbox stat-icon"></i>
+        <h2 class="mb-0"><%= totalResponses %></h2>
+        <p class="mb-0">Responses collected</p>
+      </div>
+    </div>
+  </div>
+
+  <a href="/admin/users" class="btn btn-outline-primary">
+    <i class="fa-solid fa-users"></i> Manage Users
+  </a>
+  <a href="/admin/surveys" class="btn btn-outline-primary">
+    <i class="fa-solid fa-clipboard-list"></i> Manage Surveys
+  </a>
+</div>

@@ -68,7 +68,6 @@ const updateSurvey = async (req, res) => {
 };
 
 const deleteSurvey = async (req, res) => {
-  await Response.deleteMany({ survey: req.survey._id });
   await req.survey.deleteOne();
 
   req.flash('success', 'Survey deleted');

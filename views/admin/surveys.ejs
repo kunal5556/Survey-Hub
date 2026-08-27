@@ -1,0 +1,53 @@
+<div class="container page-section">
+  <a href="/admin" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to admin dashboard</a>
+
+  <h1 class="section-title mt-3 mb-4">All Surveys (<%= surveys.length %>)</h1>
+
+  <% if (surveys.length === 0) { %>
+    <div class="empty-state">
+      <i class="fa-solid fa-clipboard-list empty-icon"></i>
+      <p class="mb-0">No surveys have been created yet.</p>
+    </div>
+  <% } else { %>
+    <div class="table-responsive">
+      <table class="table table-hover align-middle bg-white">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Owner</th>
+            <th>Questions</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th class="text-end">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% surveys.forEach(function (survey) { %>
+            <tr>
+              <td><%= survey.title %></td>
+              <td>
+                <% if (survey.owner) { %>
+                  <%= survey.owner.name %><br>
+                  <small class="text-muted"><%= survey.owner.email %></small>
+                <% } else { %>
+                  <span class="text-muted">Unknown</span>
+                <% } %>
+              </td>
+              <td><%= survey.questions.length %></td>
+              <td><%- include('../partials/statusBadge', { status: survey.status }) %></td>
+              <td><%= survey.createdAt.toLocaleDateString() %></td>
+              <td class="text-end">
+                <form action="/admin/surveys/<%= survey._id %>?_method=DELETE" method="POST" class="d-inline"
+                      onsubmit="return confirm('Delete this survey and all of its responses?');">
+                  <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete survey">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+</div>

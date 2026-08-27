@@ -1,0 +1,43 @@
+<div class="container page-section">
+  <a href="/admin" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to admin dashboard</a>
+
+  <h1 class="section-title mt-3 mb-4">All Users (<%= users.length %>)</h1>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle bg-white">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Joined</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(function (user) { %>
+          <tr>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td>
+              <span class="badge bg-<%= user.role === 'admin' ? 'danger' : 'secondary' %>"><%= user.role %></span>
+            </td>
+            <td><%= user.createdAt.toLocaleDateString() %></td>
+            <td class="text-end">
+              <% if (user._id.equals(currentUser._id)) { %>
+                <span class="text-muted">You</span>
+              <% } else { %>
+                <form action="/admin/users/<%= user._id %>?_method=DELETE" method="POST" class="d-inline"
+                      onsubmit="return confirm('Delete this user along with all of their surveys?');">
+                  <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete user">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </form>
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

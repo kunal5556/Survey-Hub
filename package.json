@@ -1,17 +1,30 @@
 {
-  "name": "online-survey-system",
+  "name": "survey-hub",
   "version": "1.0.0",
-  "description": "Online Survey System built with Node.js, Express, EJS and MongoDB",
+  "description": "Survey Hub - an online survey system built with Node.js, Express, EJS and MongoDB",
   "main": "app.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "seed": "node utils/seed.js"
   },
+  "keywords": [
+    "survey",
+    "express",
+    "mongodb",
+    "mongoose",
+    "ejs"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.4.2",
     "ejs": "^3.1.10",
