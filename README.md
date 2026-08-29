@@ -1,4 +1,4 @@
-# Online Survey System
+# Survey Hub
 
 A web application that lets registered users create surveys, add questions, publish them with a shareable public link, collect responses from anyone, and study the results with statistics and charts.
 
